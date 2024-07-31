@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Daftar Belanja</title>
+</head>
+<body>
+    <h1>List Grocery Shopping Today</h1>
+    <div id="shoppingList">
+        <p>Daftar Belanja: </p>
+        <ul id="listItem">
+
+        </ul>
+    </div>
+
+
+
+    <script>
+        let listShopping = {
+            apple: 6,
+            bread: 3,
+            milk: 4,
+            coffe: 2
+        };
+
+        function addItem(item, total){
+            let addItem =document.getElementById("listItem");
+            let jumlah = 0;
+            if(listShopping[item]) {
+                listShopping[item] += total;
+            } else {
+                listShopping[item] = total;
+            }
+            showListShopping();
+        }
+    
+        function removeItem(item) {
+            delete listShopping[item];
+        }
+
+        function changeTotalItem(item, total) {
+            if(listShopping[item]) {
+                listShopping[item] = total;
+            }
+        }
+
+        function showListShopping(item, total) {
+            let listItem = document.getElementById("listItem");
+            listItem.innerHTML='';
+            for(let item in listShopping) {
+                let newLi = document.createElement('newLi');
+                newLi.textContent = item + ": " + listShopping[item];
+                listItem.appendChild(newLi);
+            }
+        }
+        addItem('milk', 3);
+        addItem('bread', 2);
+        removeItem('apple');
+        changeTotalItem('coffe', 3);
+        showListShopping();
+    </script>
+    
+</body>
+</html>
